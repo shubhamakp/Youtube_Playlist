@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search-List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="mains.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link playlist" href="/playlist">PlayList</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    <h1>your search results</h1>
+    <main>
+        <% for(let item of obj.items) {%>
+        <article class="item" data-key="<%= item.id.videoId %>">
+            <a href="https://www.youtube.com/watch?v=<%=item.id.videoId%>" target="_blank" class="anc" id="<%= item.id.videoId %>">
+                <img src="<%= item.snippet.thumbnails.medium.url %>" alt="" class="thumb">
+            </a>
+            <div class="details">
+                <h4 class = "title"><%= item.snippet.title.substring(0,50) %></h4> 
+                <p class="desc">
+                    <%= item.snippet.description.substring(0, 100) %>
+                </p>
+            </div>
+            
+            <button id="btnAdd" class="butnAdd btn btn-danger">Add</button>
+        </article>
+        <% } %>
+    </main>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
