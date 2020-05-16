@@ -8,7 +8,22 @@ const db = new seQuelize('practice','root','mypass', {
         max:5
     }
 })
-
+const user = db.define('users',{
+    id:{
+        type : seQuelize.INTEGER,
+        autoIncrement:true,
+        primaryKey:true
+    },
+    Name : {
+        type : seQuelize.STRING
+    },
+    email : {
+        type : seQuelize.STRING
+    },
+    password :{
+        type : seQuelize.STRING
+    } 
+})
 const playlist  = db.define('playlist',{
     id:{
         type: seQuelize.INTEGER,
@@ -29,9 +44,18 @@ const playlist  = db.define('playlist',{
     }
     
 })
-
 db.sync()
-.then(() =>console.log("database has been synched"))
-.catch((err)=> console.log("error creating database"))
+// .then((result) =>{
+//     return user.findByPk(1);
+// })
+// .then(usering=>{
+//     if(!usering)
+//     return user.create({Name : 'shubham', email : 'shubhamakp@gmail.com'});
+//     return usering;
+// })
+.then((usi)=>console.log("database has been synced"))
+.catch((err)=> console.log(err))
 
-module.exports = playlist;
+exports = module.exports ={
+    playlist,user
+}
