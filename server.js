@@ -10,6 +10,7 @@ var SequelizeStore = require('connect-session-sequelize')(session.Store);
 const playlist = require('./db').playlist;
 const bcrypt = require('bcryptjs')
 const user = require('./db').user;
+const PORT = process.env.PORT || 3000;
 require('dotenv').config();
 
 server.use(bodyParser.json())
@@ -86,7 +87,7 @@ server.post('/signup', (req, res) => {
         .then(userdoc => {
             let len = userdoc.length;
             if (len > 0)
-                return res.redirect('/signup');
+                return res.redirect('/login');
             return bcrypt.hash(pass, 10)
                 .then(hashedpass => {
                     user.create({
@@ -218,4 +219,4 @@ server.get('/playlist', redirecthome,(req, res) => {
         })
 })
 
-server.listen(3000)
+server.listen(PORT);
